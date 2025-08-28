@@ -178,31 +178,31 @@ async function getGrade() {
             let userInfo = await octokit.request('GET /users/{username}', { username: githubUsername});
             const points = repo['points_awarded'];
 
-            // 第一步：将字符串按6位划分，不足6位左侧补0
+            // 第一步：将字符串按10位划分，不足10位左侧补0
             const sixDigitGroups = [];
-            for (let i = points.length; i > 0; i -= 6) {
-            const start = Math.max(0, i - 6);
+            for (let i = points.length; i > 0; i -= 10) {
+            const start = Math.max(0, i - 10);
             const group = points.slice(start, i);
-            sixDigitGroups.unshift(group.padStart(6, '0')); // 补齐到6位
+            sixDigitGroups.unshift(group.padStart(10, '0')); // 补齐到6位
             }
 
             // 第二步：将每6位分成两个3位，分别存入两个数组
-            const firstThreeDigits: any[] = [];
-            const secondThreeDigits: any[] = [];
+            const firstFiveDigits: any[] = [];
+            const secondFiveDigits: any[] = [];
 
             sixDigitGroups.forEach(group => {
-            const firstPart = group.slice(0, 3);  // 前3位
-            const secondPart = group.slice(3, 6); // 后3位
-            firstThreeDigits.push(parseInt(firstPart));
-            secondThreeDigits.push(parseInt(secondPart));
+            const firstPart = group.slice(0, 5);  // 前5位
+            const secondPart = group.slice(5, 10); // 后5位
+            firstFiveDigits.push(parseInt(firstPart));
+            secondFiveDigits.push(parseInt(secondPart));
             });
 
             let student = {
                 name: userInfo['data']['login'],
                 avatar: userInfo['data']['avatar_url'],
                 repo_url: repo['student_repository_url'],
-                grades: { basic_glibc: firstThreeDigits[0], libc_glibc: firstThreeDigits[1],  lua_glibc: firstThreeDigits[2], busybox_glibc: firstThreeDigits[3],  iozone_glibc: firstThreeDigits[4], basic_musl: firstThreeDigits[5], libc_musl: firstThreeDigits[6],  lua_musl: firstThreeDigits[7], busybox_musl: firstThreeDigits[8],  iozone_musl: firstThreeDigits[9]},
-                maxgrades: { basic_glibc: secondThreeDigits[0], libc_glibc: secondThreeDigits[1],  lua_glibc: secondThreeDigits[2], busybox_glibc: secondThreeDigits[3], iozone_glibc: secondThreeDigits[4],basic_musl: secondThreeDigits[5], libc_musl: secondThreeDigits[6],  lua_musl: secondThreeDigits[7], busybox_musl: secondThreeDigits[8],  iozone_musl: secondThreeDigits[9]},
+                grades: { cpu_challenge: firstFiveDigits[0], gpu_challenge: firstFiveDigits[1]},
+                maxgrades: { cpu_challenge: secondFiveDigits[0], gpu_challenge: secondFiveDigits[1]},
                 details: "",
                 lastUpdateAt: new Date(repo['submission_timestamp']).getTime()
             };
