@@ -6,7 +6,7 @@
 
 <div style="text-align: center"><img src="https://user-images.githubusercontent.com/108247373/179374302-0c54ef62-9338-4122-89f9-47d7f8dc2fab.png" alt="shortcut" width="200"/></div>
 
-## 如何快速部署
+## 如何快速部署 
  
 ### 1. Fork 项目 
 
