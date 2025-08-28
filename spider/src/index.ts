@@ -187,22 +187,22 @@ async function getGrade() {
             }
 
             // 第二步：将每6位分成两个3位，分别存入两个数组
-            const firstThreeDigits: any[] = [];
-            const secondThreeDigits: any[] = [];
+            const firstFiveDigits: any[] = [];
+            const secondFiveDigits: any[] = [];
 
             sixDigitGroups.forEach(group => {
             const firstPart = group.slice(0, 5);  // 前5位
             const secondPart = group.slice(5, 10); // 后5位
-            firstThreeDigits.push(parseInt(firstPart));
-            secondThreeDigits.push(parseInt(secondPart));
+            firstFiveDigits.push(parseInt(firstPart));
+            secondFiveDigits.push(parseInt(secondPart));
             });
 
             let student = {
                 name: userInfo['data']['login'],
                 avatar: userInfo['data']['avatar_url'],
                 repo_url: repo['student_repository_url'],
-                grades: { basic_glibc: firstThreeDigits[0], libc_glibc: firstThreeDigits[1],  lua_glibc: firstThreeDigits[2], busybox_glibc: firstThreeDigits[3],  iozone_glibc: firstThreeDigits[4], basic_musl: firstThreeDigits[5], libc_musl: firstThreeDigits[6],  lua_musl: firstThreeDigits[7], busybox_musl: firstThreeDigits[8],  iozone_musl: firstThreeDigits[9]},
-                maxgrades: { basic_glibc: secondThreeDigits[0], libc_glibc: secondThreeDigits[1],  lua_glibc: secondThreeDigits[2], busybox_glibc: secondThreeDigits[3], iozone_glibc: secondThreeDigits[4],basic_musl: secondThreeDigits[5], libc_musl: secondThreeDigits[6],  lua_musl: secondThreeDigits[7], busybox_musl: secondThreeDigits[8],  iozone_musl: secondThreeDigits[9]},
+                grades: { cpu_challenge: firstFiveDigits[0], gpu_challenge: firstFiveDigits[1]},
+                maxgrades: { cpu_challenge: secondFiveDigits[0], gpu_challenge: secondFiveDigits[1]},
                 details: "",
                 lastUpdateAt: new Date(repo['submission_timestamp']).getTime()
             };
