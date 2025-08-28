@@ -1,7 +1,8 @@
 # @format
 
 name: GitHub Classroom Workflow
-
+permissions:
+  contents: write
 on:
   schedule:
     - cron: '*/20 * * * *'
