@@ -186,7 +186,7 @@ async function getGrade() {
             sixDigitGroups.unshift(group.padStart(10, '0')); // 补齐到6位
             }
 
-            // 第二步：将每6位分成两个3位，分别存入两个数组
+            // 第二步：将每10位分成两个5位，分别存入两个数组
             const firstFiveDigits: any[] = [];
             const secondFiveDigits: any[] = [];
 

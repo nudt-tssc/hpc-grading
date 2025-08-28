@@ -5,7 +5,7 @@ export const config = dotenv.config();
 export const organiztion: string = 'nudt-tssc';            // 组织
 export const fullOrganization: string = '218960471-nudt-tssc-classroom-1e64a9'; // classroom名称
 export const assignment = 'HPC-challenge';   // assignment
-export const works = ['CPU-Challenge', 'GPU-Challenge']; // assignment 的不同情况
+export const works = ['cpu_challenge', 'gpu_challenge']; // assignment 的不同情况
 export const AUTH_TOKEN = process.env['TOKEN'];
 export const SESSION_TOKEN = process.env['SESSION_TOKEN'];
  
