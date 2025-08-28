@@ -2,10 +2,10 @@ import * as dotenv from "dotenv";
 
 export const config = dotenv.config();
 
-export const organiztion: string = 'oscontent25';            // 组织
-export const fullOrganization: string = '202499350-oscontent25-classroom-os25'; // classroom名称
-export const assignment = 'oscomp-test';   // assignment
-export const works = ['basic_glibc', 'libc_glibc', 'lua_glibc', 'busybox_glibc', 'iozone_glibc', 'basic_musl', 'libc_musl', 'lua_musl', 'busybox_musl', 'iozone_musl']; // assignment 的不同情况
+export const organiztion: string = 'nudt-tssc';            // 组织
+export const fullOrganization: string = '218960471-nudt-tssc-classroom-1e64a9'; // classroom名称
+export const assignment = 'HPC-challenge';   // assignment
+export const works = ['CPU-Challenge', 'GPU-Challenge']; // assignment 的不同情况
 export const AUTH_TOKEN = process.env['TOKEN'];
 export const SESSION_TOKEN = process.env['SESSION_TOKEN'];
  

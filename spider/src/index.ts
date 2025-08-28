@@ -178,12 +178,12 @@ async function getGrade() {
             let userInfo = await octokit.request('GET /users/{username}', { username: githubUsername});
             const points = repo['points_awarded'];
 
-            // 第一步：将字符串按6位划分，不足6位左侧补0
+            // 第一步：将字符串按10位划分，不足10位左侧补0
             const sixDigitGroups = [];
-            for (let i = points.length; i > 0; i -= 6) {
-            const start = Math.max(0, i - 6);
+            for (let i = points.length; i > 0; i -= 10) {
+            const start = Math.max(0, i - 10);
             const group = points.slice(start, i);
-            sixDigitGroups.unshift(group.padStart(6, '0')); // 补齐到6位
+            sixDigitGroups.unshift(group.padStart(10, '0')); // 补齐到6位
             }
 
             // 第二步：将每6位分成两个3位，分别存入两个数组
@@ -191,8 +191,8 @@ async function getGrade() {
             const secondThreeDigits: any[] = [];
 
             sixDigitGroups.forEach(group => {
-            const firstPart = group.slice(0, 3);  // 前3位
-            const secondPart = group.slice(3, 6); // 后3位
+            const firstPart = group.slice(0, 5);  // 前5位
+            const secondPart = group.slice(5, 10); // 后5位
             firstThreeDigits.push(parseInt(firstPart));
             secondThreeDigits.push(parseInt(secondPart));
             });
