@@ -30,7 +30,7 @@ function App() {
           <Icon symbol="icon-autojiangbei" id="logo" />
           <div className="logo-title">
             {/* <span>{websiteTitle}</span> */}
-            <span>训练营</span>
+            <span>HPC-Challenge</span>
           </div>
         </div>
         <Contact isMobile={mobile} />
